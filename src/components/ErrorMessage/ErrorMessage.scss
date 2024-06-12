@@ -1,0 +1,10 @@
+@import '../../index';
+
+.error-message {
+    margin: 20px auto;
+    font-family: $main-font;
+    font-size: $large-font-size;
+    font-weight: 400;
+    text-align: center;
+    display: block;
+}

@@ -1,0 +1,39 @@
+@import '../../index';
+
+header {
+    padding: 10px 20px;
+    background-color: $block-color;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+header h1 {
+    font-family: $main-font;
+    font-size: $large-font-size;
+    font-weight: 400;
+    color: $text-color;
+}
+
+header button {
+    padding: 10px 20px;
+    margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    font-family: $main-font;
+    font-size: $large-font-size;
+    color: $text-color;
+    cursor: pointer;
+
+    transition: 200ms;
+}
+
+header button.sign-up {
+    border: 1px solid $sucsess-color;
+    color: $sucsess-color;
+}
+
+header button:hover {
+    background-color: $background-color;
+}

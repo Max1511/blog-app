@@ -1,0 +1,30 @@
+@import '../../index';
+
+.tags {
+    min-height: 20px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tags:first-child {
+    opacity: 100%;
+}
+
+.tag {
+    height: 20px;
+    border: 1px solid $text-color;
+    border-radius: 2px;
+    font-family: $main-font;
+    font-size: 12px;
+    color: $text-color;
+    opacity: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.tag span {
+    margin: auto 5px;
+    display: block;
+}

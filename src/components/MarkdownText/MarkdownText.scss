@@ -1,0 +1,61 @@
+@import '../../index';
+
+.message {
+    height: 100%;
+    padding: 0 20px 20px 20px;
+    font-family: $main-font;
+    font-size: 14px;
+    font-weight: $large-font-weight;
+    color: $text-color;
+    text-overflow: ellipsis;
+}
+
+.message h1 {
+    font-size: 28px;
+    font-weight: $large-font-weight;
+}
+
+.message h2 {
+    font-size: 24px;
+    font-weight: $large-font-weight;
+}
+
+.message h3 {
+    font-size: 22px;
+    font-weight: $large-font-weight;
+}
+
+.message h4 {
+    font-size: 20px;
+    font-weight: $large-font-weight;
+}
+
+.message h5 {
+    font-size: 18px;
+    font-weight: $large-font-weight;
+}
+
+.message p {
+    font-size: 14px;
+}
+
+.message b {
+    font-weight: bold;
+}
+
+.message strong {
+    font-weight: bold;
+    color: $sucsess-color;
+}
+.message a {
+    color: $link-color;
+}
+
+.message code {
+    background-color: gray;
+    padding: 10px;
+}
+
+.message ul {
+    list-style-type: circle;
+}

@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+$main-font: 'Inter';
+$background-color: #EBEEF3;
+$block-color: white;
+$link-color: #1890FF;
+$sucsess-color: #52C41A;
+$text-color: black;
+
+$large-font-size: 18px;
+$large-font-weight: 400;
+
+body {
+    margin: 0;
+    background-color: $background-color;
+}
+
+ul {
+    list-style-type: none;
+}

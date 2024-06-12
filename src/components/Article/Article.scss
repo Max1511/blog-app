@@ -1,0 +1,128 @@
+@import '../../index';
+
+$empty-like: url('../../images/empty-like.svg');
+$like: url('../../images/like.svg');
+
+$title-size: 20px;
+$text-size: 12px;
+$main-padding: 15px;
+
+.article {
+    width: 938px;
+    min-height: 110px;
+    margin: 30px auto;
+    padding: 15px 0;
+    background-color: $block-color;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.article.full {
+    min-height: 807px;
+}
+
+.main-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-part {
+    padding-left: $main-padding;
+}
+
+.top {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.title {
+    margin: 0;
+    font-family: $main-font;
+    font-size: $title-size;
+    font-weight: $large-font-weight;
+    color: $link-color;
+    text-decoration: none;
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+
+.likes {
+    display: flex;
+    justify-items: center;
+}
+
+.likes input {
+    display: none;
+}
+
+.likes label {
+    font-family: $main-font;
+    font-size: $text-size;
+    color: $text-color;
+    display: flex;
+    justify-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.likes label:before {
+    content: '';
+    width: 17px;
+    height: 17px;
+    background: $empty-like no-repeat;
+    display: inline-block;
+}
+
+.likes input:hover+label:before {
+    background: $like no-repeat;
+    opacity: 50%;
+}
+
+.likes input:checked+label:before {
+    background: $like no-repeat;
+}
+
+.description {
+    width: 682px;
+    margin: 10px 0;
+    font-family: $main-font;
+    font-size: $text-size;
+    color: $text-color;
+}
+
+.description.gray {
+    opacity: 50%;
+}
+
+.right-part {
+    padding-right: $main-padding;
+    display: flex;
+    gap: 15px;
+    text-align: right;
+}
+
+.author-name {
+    margin: 0;
+    font-family: $main-font;
+    font-size: $title-size;
+    font-weight: $large-font-weight;
+    color: $text-color;
+    text-align: right;
+}
+
+.created-data {
+    font-family: $main-font;
+    font-size: $text-size;
+    color: $text-color;
+    opacity: 50%;
+}
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+}
