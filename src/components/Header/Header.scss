@@ -5,35 +5,73 @@ header {
     background-color: $block-color;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
 }
 
-header h1 {
+header .blog-link {
+    padding: 10px 0;
     font-family: $main-font;
     font-size: $large-font-size;
     font-weight: 400;
     color: $text-color;
+    text-decoration: none;
+    display: block;
 }
 
-header button {
+header .buttons {
+    display: flex;
+}
+
+header .button {
     padding: 10px 20px;
-    margin-left: 20px;
-    background-color: transparent;
-    border: none;
+    margin-left: 30px;
+    background-color: none;
     border-radius: 5px;
     font-family: $main-font;
     font-size: $large-font-size;
     color: $text-color;
+    text-decoration: none;
+    display: block;
     cursor: pointer;
 
     transition: 200ms;
 }
 
-header button.sign-up {
+header .button.sign-up {
     border: 1px solid $sucsess-color;
     color: $sucsess-color;
 }
 
-header button:hover {
+header .button.create-article {
+    height: 17px;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border: 1px solid $sucsess-color;
+    font-size: 14px;
+    color: $sucsess-color;
+}
+
+header .profile {
+    padding: 0;
+    margin-left: 30px;
+    font-family: $main-font;
+    font-size: $large-font-size;
+    color: $text-color;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+header .profile .username {
+    margin-right: 20px;
+    display: block;
+}
+
+header .button.log-out {
+    border: 1px solid $text-color;
+    color: $text-color;
+}
+
+header .button:hover {
     background-color: $background-color;
 }

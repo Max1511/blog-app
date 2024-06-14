@@ -38,10 +38,10 @@ const FullArticle = ({ article, isLoading, isError, fetchArticle }) => {
     );
 }
 
-const mapStateToProps = ({ ArticlesReducer }) => ({
-    article: ArticlesReducer.article,
-    isLoading: ArticlesReducer.isLoading,
-    isError: ArticlesReducer.isError,
+const mapStateToProps = ({ ArticleReducer }) => ({
+    article: ArticleReducer.article,
+    isLoading: ArticleReducer.isLoading,
+    isError: ArticleReducer.isError,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,0 +1,118 @@
+@import '../../index';
+
+$text-color: #262626;
+
+$check-mark: url('../../images/check-mark.svg');
+
+form {
+    width: 304px;
+    margin: 50px auto;
+    padding: 35px;
+    background-color: $block-color;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: $main-font;
+    color: $text-color;
+}
+
+form h1 {
+    margin-bottom: 30px;
+    font-size: $title-font-size;
+    font-weight: $title-font-weight;
+    text-align: center;
+}
+
+form .label {
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: $title-font-weight;
+    display: block;
+}
+
+form .text-input {
+    width: 284px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: $title-font-weight;
+    display: block;
+}
+
+form .text-input.error-input {
+    margin-bottom: 0;
+    border: 1px solid $error-color;
+}
+
+form .text-input::placeholder {
+    color: #D9D9D9
+}
+
+form .error {
+    margin-top: 4px;
+    font-size: 14px;
+    color: $error-color;
+}
+
+form .bottom-part {
+    border-top: 1px solid #E8E8E8;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+
+.agree {
+    display: none;
+}
+
+.agree-label {
+    font-size: 14px;
+    font-weight: $title-font-weight;
+    color: #595959;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.agree-label.error-input::before {
+    border: 1px solid $error-color;
+}
+
+.agree-label::before {
+    content: '';
+    min-width: 14px;
+    height: 14px;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    display: block;
+}
+
+.agree:checked + .agree-label::before {
+    background: $link-color $check-mark no-repeat 1px 2px;
+    border: 1px solid $link-color;
+}
+
+.submit {
+    width: 100%;
+    margin: 20px auto 0 auto;
+    padding: 12px;
+    background-color: $link-color;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: $title-font-weight;
+    color: $block-color;
+    display: block;
+    cursor: pointer;
+}
+
+.last-question {
+    font-size: 12px;
+    font-weight: $title-font-weight;
+    color: #8C8C8C;
+    text-align: center;
+}
+
+.last-question .link {
+    color: $link-color;
+}

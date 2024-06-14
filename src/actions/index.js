@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
 
 export const pageSize = 20;
+const link = 'https://blog.kata.academy/api';
 
 export const changePage = (page) => ({
     type: 'CHANGE_PAGE',
@@ -10,7 +11,11 @@ export const changePage = (page) => ({
 export const fetchArticles = (page) => {
     return function (dispatch) {
         dispatch(setLoading());
-        return fetch(`https://blog.kata.academy/api/articles?limit=${pageSize}&offset=${(page - 1) * pageSize}`)
+        return fetch(`${link}/articles?limit=${pageSize}&offset=${(page - 1) * pageSize}`, {
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
             .then(response => response.json())
             .then(json => {
                 return  dispatch(receiveArticles(json, page));
@@ -22,7 +27,11 @@ export const fetchArticles = (page) => {
 export const fetchArticle = (slug) => {
     return function (dispatch) {
         dispatch(setLoading());
-        return fetch(`https://blog.kata.academy/api/articles/${slug}`)
+        return fetch(`${link}/articles/${slug}`, {
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
             .then(response => response.json())
             .then(json => {
                 return  dispatch(receiveArticle(json));
@@ -49,3 +58,121 @@ const receiveArticle = (json) => ({
 const setError = () => ({
     type: 'SET_ERROR'
 });
+
+export const signUp = (data) => {
+    return function (dispatch) {
+        dispatch(setLoading());
+        return fetch(`${link}/users`, {
+            method: 'POST',
+            body: JSON.stringify({
+                user: {
+                    username: data.username,
+                    email: data.email,
+                    password: data.password
+                }
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(json => {
+                saveUser(json.user);
+                return dispatch(setLogIn());
+            })
+            .catch((json) => dispatch(setErrorMessage(json)));
+    };
+};
+
+export const signIn = (data) => {
+    return function (dispatch) {
+        dispatch(setLoading());
+        return fetch(`${link}/users/login`, {
+            method: 'POST',
+            body: JSON.stringify({
+                user: {
+                    email: data.email,
+                    password: data.password
+                }
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(json => {
+                saveUser(json.user);
+                return  dispatch(setLogIn());
+            })
+            .catch((json) => dispatch(setErrorMessage(json)));
+    };
+};
+
+export const updateUser = (data) => {
+    return function (dispatch) {
+        dispatch(setLoading());
+        return fetch(`${link}/user`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                user: {
+                    username: data.username,
+                    email: data.email,
+                    password: data.password !== null ? data.password : undefined,
+                    image: data.image  !== null ? data.image : undefined,
+                }
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                saveUser(json.user);
+                return  dispatch(setLogIn());
+            })
+            .catch((error) => dispatch(setErrorMessage(error)));
+    };
+};
+
+const saveUser = (user) => {
+    localStorage.setItem('username', user.username);
+    localStorage.setItem('image', user.image);
+    localStorage.setItem('token', user.token);
+}
+
+const setLogIn = () => ({
+    type: 'SET_LOG_IN'
+});
+
+const setErrorMessage = (json) => ({
+    type: 'SET_ERROR_MESSAGE',
+    json
+});
+
+export const logOut = () => {
+    localStorage.clear();
+    return ({
+        type: 'LOG_OUT'
+    });
+};
+
+export const sendFavorite = (slug) => {
+    return function (dispatch) {
+        return fetch(`${link}/articles/${slug}/favorite`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .catch(() => dispatch(setError()));
+    };
+};
+
+export const sendUnfavorite = (slug) => {
+    return function (dispatch) {
+        return fetch(`${link}/articles/${slug}/favorite`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .catch(() => dispatch(setError()));
+    };
+};

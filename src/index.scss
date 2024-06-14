@@ -6,6 +6,10 @@ $block-color: white;
 $link-color: #1890FF;
 $sucsess-color: #52C41A;
 $text-color: black;
+$error-color: #F5222D;
+
+$title-font-size: 20px;
+$title-font-weight: 500;
 
 $large-font-size: 18px;
 $large-font-weight: 400;
@@ -17,4 +21,11 @@ body {
 
 ul {
     list-style-type: none;
+}
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
 }

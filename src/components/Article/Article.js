@@ -1,11 +1,13 @@
-import { format } from 'date-fns';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
 
+import { sendFavorite, sendUnfavorite } from '../../actions';
 import MarkdownText from '../MarkdownText';
 import Tags from '../Tags';
 import './Article.scss';
 
-const Article = ({ article, isFull = false }) => {
+const Article = ({ article, isFull = false, sendFavorite, isLoggedIn, sendUnfavorite }) => {
 
     const articleClass = ['article'];
     articleClass.push(isFull ? 'full' : 'short');
@@ -19,28 +21,43 @@ const Article = ({ article, isFull = false }) => {
         return text;
     };
 
-    const description = isFull ? article.description : trimText(article.description, 200);
+    let likeClicked = article.favorited;
+    const clickLike = () => {
+        if (likeClicked) {
+            sendUnfavorite(article.slug);
+            likeClicked = false;
+            return;
+        }
+        sendFavorite(article.slug);
+        likeClicked = true;
+    };
+
+    const title = article.title ?? '';
+    const description = (isFull ? article.description ?? '' : trimText(article.description ?? '', 200));
+    const body = article.body ?? '';
 
     const descriptionClass = ['description'];
     descriptionClass.push(isFull ? 'gray' : 'black');
 
-    const message = isFull ? <MarkdownText message={article.body}/> : null;
+    const message = isFull ? <MarkdownText message={body}/> : null;
 
     return (
         <div className={articleClass.join(' ')}>
             <div className='main-info'>
                 <div className='left-part'>
                     <div className='top'>
-                        <Link className='title' to={`/articles/${article.slug}`}>{trimText(article.title, 50)}</Link>
+                        <Link className='title' to={`/articles/${article.slug}`}>{trimText(title, 50)}</Link>
                         <div className='likes'>
                             <input
                                 id={`${article.slug}-likes`}
-                                type='checkbox'/>
+                                type='checkbox'
+                                defaultChecked={article.favorited}
+                                disabled={!isLoggedIn}
+                                onClick={clickLike}/>
                             <label htmlFor={`${article.slug}-likes`}>{article.favoritesCount}</label>
                         </div>
                     </div>
                     <Tags tags={article.tagList}/>
-                    <p className={descriptionClass.join(' ')}>{trimText(description, 200)}</p>
                 </div>
                 <div className='right-part'>
                     <div>
@@ -53,9 +70,19 @@ const Article = ({ article, isFull = false }) => {
                         alt={article.author.username}/>
                 </div>
             </div>
+            <p className={descriptionClass.join(' ')}>{description}</p>
             {message}
         </div>
     );
 };
 
-export default Article;
+const mapStateToProps = ({ UserReducer }) => ({
+    isLoggedIn: UserReducer.isLoggedIn
+});
+
+const mapDispatchToProps = dispatch => ({
+    sendFavorite: slug => dispatch(sendFavorite(slug)),
+    sendUnfavorite: slug => dispatch(sendUnfavorite(slug))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article);

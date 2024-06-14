@@ -40,7 +40,7 @@ const ArticlesList = ({ articles, page, totalPages, pageSize, isLoading, isError
         pageSize={pageSize}
         pageSizeOptions={[]}
         defaultCurrent={page}
-        total={totalPages * pageSize}
+        total={totalPages}
         onChange={changePage}/> : null;
 
     return (

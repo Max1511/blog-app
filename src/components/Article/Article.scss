@@ -27,6 +27,7 @@ $main-padding: 15px;
 }
 
 .left-part {
+    width: auto;
     padding-left: $main-padding;
 }
 
@@ -59,6 +60,7 @@ $main-padding: 15px;
 }
 
 .likes label {
+    margin: auto;
     font-family: $main-font;
     font-size: $text-size;
     color: $text-color;
@@ -87,7 +89,7 @@ $main-padding: 15px;
 
 .description {
     width: 682px;
-    margin: 10px 0;
+    margin: 10px 15px;
     font-family: $main-font;
     font-size: $text-size;
     color: $text-color;
@@ -118,11 +120,4 @@ $main-padding: 15px;
     font-size: $text-size;
     color: $text-color;
     opacity: 50%;
-}
-
-.avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    object-fit: cover;
 }
