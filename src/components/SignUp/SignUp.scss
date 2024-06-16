@@ -29,7 +29,7 @@ form .label {
     display: block;
 }
 
-form .text-input {
+.text-input {
     width: 284px;
     margin-bottom: 15px;
     padding: 10px;
@@ -40,12 +40,19 @@ form .text-input {
     display: block;
 }
 
-form .text-input.error-input {
+textarea.text-input {
+    font-family: $main-font;
+    font-size: 16px;
+    font-weight: $title-font-weight;
+    resize: none;
+}
+
+.text-input.error-input {
     margin-bottom: 0;
     border: 1px solid $error-color;
 }
 
-form .text-input::placeholder {
+.text-input::placeholder {
     color: #D9D9D9
 }
 

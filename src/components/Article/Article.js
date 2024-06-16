@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import { Popconfirm } from 'antd';
 
-import { sendFavorite, sendUnfavorite } from '../../actions';
+import { sendFavorite, sendUnfavorite, deleteArticle } from '../../actions';
 import MarkdownText from '../MarkdownText';
 import Tags from '../Tags';
 import './Article.scss';
 
-const Article = ({ article, isFull = false, sendFavorite, isLoggedIn, sendUnfavorite }) => {
+const Article = ({ article, isFull = false, sendFavorite, isLoggedIn, sendUnfavorite, deleteArticle }) => {
 
     const articleClass = ['article'];
     articleClass.push(isFull ? 'full' : 'short');
@@ -41,6 +42,32 @@ const Article = ({ article, isFull = false, sendFavorite, isLoggedIn, sendUnfavo
 
     const message = isFull ? <MarkdownText message={body}/> : null;
 
+    const renderButtons = () => {
+        if (isFull && isLoggedIn && localStorage.getItem('username') == article.author.username) {
+            return (
+                <div className='buttons'>
+                    <Popconfirm
+                        placement="rightTop"
+                        description="Are you sure to delete this article?"
+                        onConfirm={() => deleteArticle(article.slug)}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <button className='button delete-article-button'>
+                            Delete
+                        </button>
+                    </Popconfirm>
+                    <Link
+                        className='button edit-article-button'
+                        to={`/articles/${article.slug}/edit`}>
+                        Edit
+                    </Link>
+                </div>
+            )
+        }
+        return null;
+    };
+
     return (
         <div className={articleClass.join(' ')}>
             <div className='main-info'>
@@ -70,7 +97,10 @@ const Article = ({ article, isFull = false, sendFavorite, isLoggedIn, sendUnfavo
                         alt={article.author.username}/>
                 </div>
             </div>
-            <p className={descriptionClass.join(' ')}>{description}</p>
+            <div className='bottom'>
+                <p className={descriptionClass.join(' ')}>{description}</p>
+                {renderButtons()}
+            </div>
             {message}
         </div>
     );
@@ -82,7 +112,8 @@ const mapStateToProps = ({ UserReducer }) => ({
 
 const mapDispatchToProps = dispatch => ({
     sendFavorite: slug => dispatch(sendFavorite(slug)),
-    sendUnfavorite: slug => dispatch(sendUnfavorite(slug))
+    sendUnfavorite: slug => dispatch(sendUnfavorite(slug)),
+    deleteArticle: (slug) => dispatch(deleteArticle(slug))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

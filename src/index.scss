@@ -29,3 +29,18 @@ ul {
     border-radius: 50%;
     object-fit: cover;
 }
+
+.button {
+    background-color: transparent;
+    border-radius: 5px;
+    font-family: $main-font;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+
+    transition: 200ms;
+}
+
+.button:hover {
+    background-color: $background-color;
+}

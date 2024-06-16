@@ -1,0 +1,57 @@
+@import '../SignUp/SignUp';
+
+.article-form {
+    width: 968px;
+    padding: 35px;
+}
+
+.article-form .text-input {
+    width: 948px;
+}
+
+.article-form textarea {
+    height: 168px;
+}
+
+.article-form .tags-block {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.article-form .tags {
+    max-width: 470px;
+    margin: 0;
+}
+
+.article-form .tag-form {
+    display: flex;
+}
+
+.text-input.tag-input {
+    width: 300px;
+    margin-right: 20px;
+    margin-bottom: 2px;
+}
+
+.article-form .submit {
+    width: 319px;
+    margin: 20px 0 0 0;
+}
+
+.delete-tag-button {
+    height: 40px;
+    margin-right: 20px;
+    padding: 10px 30px;
+    border: 1px solid $error-color;
+    border-radius: 5px;
+    font-size: 16px;
+    color: $error-color;
+}
+
+.add-tag-button {
+    height: 40px;
+    padding: 10px 35px;
+    border: 1px solid $link-color;
+    font-size: 16px;
+    color: $link-color;
+}

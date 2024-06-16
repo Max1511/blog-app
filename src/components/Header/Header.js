@@ -28,7 +28,7 @@ const Header = ({ isLoggedIn, logOut }) => {
             <>
                 <Link
                     className='button create-article'
-                    to='/'>
+                    to='/new-article'>
                     Create article
                 </Link>
                 <Link

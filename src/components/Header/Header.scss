@@ -25,16 +25,8 @@ header .buttons {
 header .button {
     padding: 10px 20px;
     margin-left: 30px;
-    background-color: none;
-    border-radius: 5px;
-    font-family: $main-font;
     font-size: $large-font-size;
     color: $text-color;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-
-    transition: 200ms;
 }
 
 header .button.sign-up {
@@ -70,8 +62,4 @@ header .profile .username {
 header .button.log-out {
     border: 1px solid $text-color;
     color: $text-color;
-}
-
-header .button:hover {
-    background-color: $background-color;
 }

@@ -176,3 +176,75 @@ export const sendUnfavorite = (slug) => {
             .catch(() => dispatch(setError()));
     };
 };
+
+export const postArticle = (data) => {
+    return function (dispatch) {
+        console.log(data);
+        return fetch(`${link}/articles`, {
+            method: 'POST',
+            body: JSON.stringify({
+                article: {
+                    title: data.title,
+                    description: data.description,
+                    body: data.text,
+                    tags: data.tags
+                }
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .catch(() => dispatch(setError()));
+    };
+}
+
+export const updateArticle = (data, slug) => {
+    return function (dispatch) {
+        console.log(data);
+        return fetch(`${link}/articles/${slug}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                article: {
+                    title: data.title,
+                    description: data.description,
+                    body: data.text,
+                    tags: data.tags
+                }
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .catch(() => dispatch(setError()));
+    };
+}
+
+export const addTag = (text) => ({
+    type: 'ADD_TAG',
+    text
+});
+
+export const updateTag = (index, text) => ({
+    type: 'UPDATE_TAG',
+    index,
+    text
+});
+
+export const deleteTag = (index) => ({
+    type: 'DELETE_TAG',
+    index
+});
+
+export const deleteArticle = (slug) => {
+    return function (dispatch) {
+        return fetch(`${link}/articles/${slug}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .catch(() => dispatch(setError()));
+    };
+}

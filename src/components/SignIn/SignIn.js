@@ -44,16 +44,16 @@ const SignIn = ({ isLoading, isError, errorMessage, signIn }) => {
                 <label className='label'>Email address</label>
                 <input
                     className={emailInputClasses.join(' ')}
-                    {...register('email', { required: true, pattern: EMAIL_REGEXP})}
+                    {...register('email')}
                     placeholder='Email address'/>
-                {errors.email && <p className='error'>Wrong email</p>}
+                {errors.email && <p className='error'>{errors.email.message}</p>}
                 <label className='label'>Password</label>
                 <input
                     className={passwordInputClasses.join(' ')}
                     type='password'
-                    {...register('password', { required: true, minLength: 6 })}
+                    {...register('password')}
                     placeholder='Password'/>
-                {errors.password && <p className='error'>Wrong password</p>}
+                {errors.password && <p className='error'>{errors.email.password}</p>}
                 <button
                     className='submit'
                     type='submit'>

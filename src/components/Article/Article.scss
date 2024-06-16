@@ -31,7 +31,7 @@ $main-padding: 15px;
     padding-left: $main-padding;
 }
 
-.top {
+.left-part .top {
     margin-bottom: 10px;
     display: flex;
     gap: 15px;
@@ -97,6 +97,36 @@ $main-padding: 15px;
 
 .description.gray {
     opacity: 50%;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom .buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bottom .buttons .button {
+    height: 15px;
+    margin-left: 0;
+    margin-right: 15px;
+    padding: 8px 25px 12px 25px;
+    font-size: 16px;
+}
+
+.delete-article-button {
+    min-height: 37px;
+    border: 1px solid $error-color;
+    color: $error-color;
+    display: block;
+}
+
+.edit-article-button {
+    border: 1px solid $sucsess-color;
+    color: $sucsess-color;
 }
 
 .right-part {
