@@ -27,9 +27,11 @@ const EditArticleForm = ({ isLoggedIn, tags, article, isLoading, isError, fetchA
     
     const formSchema = Yup.object().shape({
         title: Yup.string()
-            .required('Title is required'),
+            .required('Title is required')
+            .max(100, 'This title too long'),
         description: Yup.string()
-            .required('Description is required'),
+            .required('Description is required')
+            .max(400, 'This title too long'),
         text: Yup.string()
             .required('Text is required')
     });

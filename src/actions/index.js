@@ -187,7 +187,7 @@ export const postArticle = (data) => {
                     title: data.title,
                     description: data.description,
                     body: data.text,
-                    tags: data.tags
+                    tagList: data.tags
                 }
             }),
             headers: {
@@ -209,7 +209,7 @@ export const updateArticle = (data, slug) => {
                     title: data.title,
                     description: data.description,
                     body: data.text,
-                    tags: data.tags
+                    tagList: data.tags
                 }
             }),
             headers: {
