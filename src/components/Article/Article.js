@@ -43,7 +43,7 @@ const Article = ({ article, isFull = false, sendFavorite, isLoggedIn, sendUnfavo
     const message = isFull ? <MarkdownText message={body}/> : null;
 
     const renderButtons = () => {
-        if (isFull && isLoggedIn && localStorage.getItem('username') == article.author.username) {
+        if (isFull && isLoggedIn && localStorage.getItem('username') === article.author.username) {
             return (
                 <div className='buttons'>
                     <Popconfirm
